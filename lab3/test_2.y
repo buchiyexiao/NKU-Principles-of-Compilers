@@ -11,7 +11,7 @@ Zijie Zhao <1091404874@qq.com>
 #include <ctype.h>
 #ifndef YYSTYPE
 #define YYSTYPE double
-#endif 
+#endif
 int yylex();
 extern int yyparse();
 FILE* yyin;
@@ -38,7 +38,7 @@ lines   :   lines expr '=\n' { printf("The result is :%f\n", $2); }
         |
         ;
 
-expr    :   expr ADD expr { $$ = $1 + $3; } 
+expr    :   expr ADD expr { $$ = $1 + $3; }
         |   expr SUB expr { $$ = $1 - $3; }
         |   expr MUL expr { $$ = $1 * $3; }
         |   expr DIV expr { $$ = $1 / $3; }
@@ -51,7 +51,7 @@ expr    :   expr ADD expr { $$ = $1 + $3; }
 
 
 int yylex()
-{ 
+{
     int t;
     while(1){
         t = getchar();
@@ -83,7 +83,7 @@ int yylex()
                 }else{
                     t = getchar();
                 }
-                if (t == ' ' || t == '\t' || t == '\n') { 
+                if (t == ' ' || t == '\t' || t == '\n') {
                     t = getchar();
                     flag = 1;
                     continue;
@@ -105,13 +105,13 @@ int yylex()
 
 int main(void)
 {
-    yyin = stdin ; 
+    yyin = stdin ;
     do {
             yyparse();
-    } while (! feof(yyin)); 
+    } while (! feof(yyin));
     return 0;
 }
-void yyerror(const char* s) { 
+void yyerror(const char* s) {
     fprintf(stderr,"Parse error: %s\n",s);
     exit(1);
 }
